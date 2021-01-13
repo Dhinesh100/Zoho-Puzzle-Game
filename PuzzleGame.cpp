@@ -30,6 +30,8 @@ struct Puzzle
 	int UserStack[10000];
 } puzzle;
 
+// Used to display welcome screen at the center of console
+
 void gotoxy (int x, int y)
 {
     COORD coordinates;
@@ -68,6 +70,8 @@ int main()
 	return 0;
 }
 
+// Shuffles the box before letting user to play
+
 int** shuffle(int size)
 {
 	int count = 1;
@@ -95,6 +99,8 @@ int** shuffle(int size)
 	
 	return box;
 }
+
+// Just few amount of shuffles to make the game easier
 
 int** easy(int** box, int size)
 {	
@@ -131,6 +137,8 @@ int** easy(int** box, int size)
 	
 	return box;
 }
+
+// Gets keyboard input from user in order to work on the desired commands
 
 int** play(int** box, int size)
 {
@@ -217,6 +225,8 @@ int** play(int** box, int size)
 	return box;
 }
 
+// Display the puzzle to the user
+
 int display(int** box, int size)
 {	
 	for(int border=0; border<size; border++)
@@ -283,6 +293,8 @@ int display(int** box, int size)
 	return 0;
 }
 
+// Checks if the puzzle is completed
+
 boolean isCompleted(int** box, int size)
 {
 	int element = 1;
@@ -302,6 +314,8 @@ boolean isCompleted(int** box, int size)
 	
 	return true;
 }
+
+// Helps in moving the piece downward
 
 int** moveDown(int** box, int size, int top)
 {
@@ -330,6 +344,8 @@ int** moveDown(int** box, int size, int top)
 	return box;
 }
 
+// Helps in moving the piece upwards
+
 int** moveUp(int** box, int size, int top)
 {
 	if(puzzle.SpaceRow+1 == size)
@@ -356,6 +372,8 @@ int** moveUp(int** box, int size, int top)
 	
 	return box;
 }
+
+// Helps in moving the piece rightwards
 
 int** moveRight(int** box, int size, int top)
 {
@@ -384,6 +402,8 @@ int** moveRight(int** box, int size, int top)
 	return box;
 }
 
+// Helps in moving the piece leftward
+
 int** moveLeft(int** box, int size, int top)
 {
 	if(puzzle.SpaceColumn+1 == size)
@@ -411,6 +431,8 @@ int** moveLeft(int** box, int size, int top)
 	return box;
 }
 
+// Used to swap the space and the number
+
 int** move(int** box, int size, int srow, int scol, int vrow, int vcol)
 {
 	box[vrow][vcol] += box[srow][scol];
@@ -419,6 +441,8 @@ int** move(int** box, int size, int srow, int scol, int vrow, int vcol)
 	
 	return box;
 }
+
+// Used to perform undo operation and go back to previous state
 
 int** undo(int** box, int top, int size)
 {
