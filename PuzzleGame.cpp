@@ -30,13 +30,11 @@ struct Puzzle
 	int UserStack[10000];
 } puzzle;
 
-// Used to display welcome screen at the center of console
-
 void gotoxy (int x, int y)
 {
     COORD coordinates;
     coordinates.X = x;
-    coordinates.Y = y;
+    coordinates.Y = y;											// Used to display welcome screen at the center of console
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coordinates);
 }
 
@@ -70,15 +68,13 @@ int main()
 	return 0;
 }
 
-// Shuffles the box before letting user to play
-
 int** shuffle(int size)
 {
 	int count = 1;
 	
 	int** box = new int*[size];
 	
-	puzzle.SpaceRow = size-1;
+	puzzle.SpaceRow = size-1;									// Shuffles the box before letting user to play
 	puzzle.SpaceColumn = size-1;
 	
 	for(int row=0; row<size; row++)
@@ -100,9 +96,7 @@ int** shuffle(int size)
 	return box;
 }
 
-// Just few amount of shuffles to make the game easier
-
-int** easy(int** box, int size)
+int** easy(int** box, int size)											// Just few amount of shuffles to make the game easier
 {	
 	for(int shuffle=0; shuffle<20*size; shuffle++)
 	{
@@ -138,9 +132,7 @@ int** easy(int** box, int size)
 	return box;
 }
 
-// Gets keyboard input from user in order to work on the desired commands
-
-int** play(int** box, int size)
+int** play(int** box, int size)									// Gets keyboard input from user in order to work on the desired commands
 {
 	cout<<"\nSteps: "<<puzzle.StepCount<<"\t"<<"Undo: U | Reset: R | Exit: E\n\n";
 	
@@ -225,9 +217,7 @@ int** play(int** box, int size)
 	return box;
 }
 
-// Display the puzzle to the user
-
-int display(int** box, int size)
+int display(int** box, int size)										// Display the puzzle to the user
 {	
 	for(int border=0; border<size; border++)
 	{
@@ -293,9 +283,7 @@ int display(int** box, int size)
 	return 0;
 }
 
-// Checks if the puzzle is completed
-
-boolean isCompleted(int** box, int size)
+boolean isCompleted(int** box, int size)										// Checks if the puzzle is completed
 {
 	int element = 1;
 	
@@ -315,9 +303,7 @@ boolean isCompleted(int** box, int size)
 	return true;
 }
 
-// Helps in moving the piece downward
-
-int** moveDown(int** box, int size, int top)
+int** moveDown(int** box, int size, int top)								// Helps in moving the piece downward
 {
 	if(puzzle.SpaceRow-1 < 0)
 	{
@@ -344,9 +330,7 @@ int** moveDown(int** box, int size, int top)
 	return box;
 }
 
-// Helps in moving the piece upwards
-
-int** moveUp(int** box, int size, int top)
+int** moveUp(int** box, int size, int top)									// Helps in moving the piece upwards
 {
 	if(puzzle.SpaceRow+1 == size)
 	{
@@ -373,9 +357,7 @@ int** moveUp(int** box, int size, int top)
 	return box;
 }
 
-// Helps in moving the piece rightwards
-
-int** moveRight(int** box, int size, int top)
+int** moveRight(int** box, int size, int top)									// Helps in moving the piece rightwards
 {
 	if(puzzle.SpaceColumn-1 < 0)
 	{
@@ -402,9 +384,7 @@ int** moveRight(int** box, int size, int top)
 	return box;
 }
 
-// Helps in moving the piece leftward
-
-int** moveLeft(int** box, int size, int top)
+int** moveLeft(int** box, int size, int top)								// Helps in moving the piece leftward
 {
 	if(puzzle.SpaceColumn+1 == size)
 	{
@@ -431,9 +411,7 @@ int** moveLeft(int** box, int size, int top)
 	return box;
 }
 
-// Used to swap the space and the number
-
-int** move(int** box, int size, int srow, int scol, int vrow, int vcol)
+int** move(int** box, int size, int srow, int scol, int vrow, int vcol)						// Used to swap the space and the number
 {
 	box[vrow][vcol] += box[srow][scol];
 	box[srow][scol] = box[vrow][vcol] - box[srow][scol];
@@ -442,9 +420,7 @@ int** move(int** box, int size, int srow, int scol, int vrow, int vcol)
 	return box;
 }
 
-// Used to perform undo operation and go back to previous state
-
-int** undo(int** box, int top, int size)
+int** undo(int** box, int top, int size)								// Used to perform undo operation and go back to previous state
 {
 	if(top == 0)
 	{
